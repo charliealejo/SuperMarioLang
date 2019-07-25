@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperMarioLang", "SuperMari
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{7CF452D4-DFD4-433A-A6C7-CAFD5BDDE39B}"
 	ProjectSection(SolutionItems) = preProject
+		Examples\Arrow.sml = Examples\Arrow.sml
+		Examples\Ascii.sml = Examples\Ascii.sml
 		Examples\Compass.sml = Examples\Compass.sml
 		Examples\HelloWorld.sml = Examples\HelloWorld.sml
 	EndProjectSection

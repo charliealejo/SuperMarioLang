@@ -51,9 +51,9 @@ Along Mario's way he can step over several kind of instructions:
 * `-` __TAPE_DECR__: Decrements the value at the tape position in 1 unit.
 * `%` __TAPE_JUMP__: Moves the tape pointer to the position specified by the current value. _(Example: we
 are at cell #7 with a value of 2, so the tape pointer moves to cell #2.)_
-* `'` __TAPE_INDEX__: Sets the current value equals to the current tape position. _(Example: we are at
+* `&` __TAPE_INDEX__: Sets the current value equals to the current tape position. _(Example: we are at
 cell #4, so we set the value at cell #4 to 4.)_
-* `&` __TAPE_RETRIEVE__: Sets the current value equals to the value stored in the position pointed by
+* `*` __TAPE_RETRIEVE__: Sets the current value equals to the value stored in the position pointed by
 the current value. _(Example: we are at cell #9 with a value of 3, so we set the value at cell #9
 equals to the value at cell #3.)_
 * `.` __WRITE_CHAR__: Writes the value at the tape position in the standard output as a character

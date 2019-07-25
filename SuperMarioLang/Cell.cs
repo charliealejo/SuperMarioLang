@@ -73,8 +73,8 @@ namespace SuperMarioLang
                 case '+': return CellType.TAPE_INCR;
                 case '-': return CellType.TAPE_DECR;
                 case '%': return CellType.TAPE_JUMP;
-                case '\'': return CellType.TAPE_INDEX;
-                case '&': return CellType.TAPE_RETRIEVE;
+                case '&': return CellType.TAPE_INDEX;
+                case '*': return CellType.TAPE_RETRIEVE;
                 case '.': return CellType.WRITE_CHAR;
                 case ':': return CellType.WRITE_NUMBER;
                 case ',': return CellType.READ_CHAR;

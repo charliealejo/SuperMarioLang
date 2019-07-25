@@ -74,8 +74,8 @@ namespace SuperMarioLang
         {
             return x == scenario.GetLength(0) - 1 ||
                    (x == 0 && m == Movement.JUMP) ||
-                   (y == 0 && m == Movement.LEFT) ||
-                   (y == scenario.GetLength(1) - 1 && m == Movement.RIGHT);
+                   (y == 0 && m == Movement.LEFT && scenario[x + 1, y].IsFloor()) ||
+                   (y == scenario.GetLength(1) - 1 && m == Movement.RIGHT && scenario[x + 1, y].IsFloor());
         }
     }
 }

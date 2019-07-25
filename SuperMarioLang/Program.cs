@@ -15,7 +15,9 @@ namespace SuperMarioLang
             }
             else DisplayUsage();
 
+#if DEBUG
             Console.ReadKey();
+#endif
         }
 
         private static bool CheckParameters(string[] args)

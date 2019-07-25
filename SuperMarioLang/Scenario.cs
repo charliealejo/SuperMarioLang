@@ -64,7 +64,7 @@ namespace SuperMarioLang
                         return scenario[x + 1, y];
                     }
                 }
-                return Cell.Endgame;
+                throw new Exception($"Mario got stuck at line {x+1}, column {y+1}");
             }
             else if (mario.Direction == Movement.ELEVATOR_UP) return scenario[x - 1, y];
             else return scenario[x + 1, y];

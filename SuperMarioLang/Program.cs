@@ -11,7 +11,14 @@ namespace SuperMarioLang
             if (CheckParameters(args))
             {
                 var interpreter = new Interpreter(new Loader());
-                interpreter.Execute(args[0], args.Skip(1));
+                try
+                {
+                    interpreter.Execute(args[0], args.Skip(1));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"SuperMarioException: {ex.Message}");
+                }
             }
             else DisplayUsage();
 

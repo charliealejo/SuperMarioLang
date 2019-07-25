@@ -23,7 +23,8 @@ namespace SuperMarioLang
 
         internal bool IsFloor()
         {
-            return Type == CellType.FLOOR || 
+            return Type == CellType.FLOOR ||
+                   Type == CellType.WALL ||
                    Type == CellType.ELEVATOR_END ||
                    Type == CellType.ELEVATOR_START;
         }

@@ -14,6 +14,10 @@ namespace SuperMarioLang
 
         private Mario mario;
 
+#if DEBUG
+        private readonly System.Collections.Generic.List<Cell> route = new System.Collections.Generic.List<Cell>();
+#endif
+
         public Interpreter(Loader loader)
         {
             this.loader = loader;
@@ -32,6 +36,9 @@ namespace SuperMarioLang
 
             while (currentCell.Type != CellType.END)
             {
+#if DEBUG
+                route.Add(currentCell);
+#endif
                 if (currentCell.IsInstruction())
                 {
                     if (skip) skip = false;

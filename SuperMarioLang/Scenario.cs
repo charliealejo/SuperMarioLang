@@ -47,13 +47,13 @@ namespace SuperMarioLang
                     scenario[x + 1, y].Type == CellType.ELEVATOR_START)
                 {
                     int elevatorEnd = -1;
-                    for (int j = 0; j < scenario.GetLength(1); j++)
-                        if (scenario[x, j].Type == CellType.ELEVATOR_END)
+                    for (int i = 0; i < scenario.GetLength(1); i++)
+                        if (scenario[i, y].Type == CellType.ELEVATOR_END)
                         {
-                            elevatorEnd = j;
+                            elevatorEnd = i;
                             break;
                         }
-                    if (elevatorEnd < y)
+                    if (elevatorEnd < x)
                     {
                         mario.Direction = Movement.ELEVATOR_UP;
                         return scenario[x - 1, y];

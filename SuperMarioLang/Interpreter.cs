@@ -1,17 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SuperMarioLang
 {
     internal class Interpreter
     {
         private Loader loader;
+        private ArgsReader reader;
         private Tape tape;
-        private string arguments;
         private bool skip;
         private Mario mario;
 
 #if DEBUG
-        private readonly System.Collections.Generic.List<Cell> route = new System.Collections.Generic.List<Cell>();
+        private readonly List<Cell> route = new List<Cell>();
 #endif
 
         public Interpreter(Loader loader)
@@ -21,12 +22,12 @@ namespace SuperMarioLang
             skip = false;
         }
 
-        internal void Execute(string path, System.Collections.Generic.IEnumerable<string> args)
+        internal void Execute(string path, IEnumerable<string> args)
         {
             var scenario = loader.Load(path);
             if (scenario == null) return;
 
-            arguments = string.Join(' ', args);
+            reader = new ArgsReader(args);
             mario = new Mario();
             var currentCell = scenario.InitialPosition;
 
@@ -67,21 +68,23 @@ namespace SuperMarioLang
                 case CellType.TAPE_DECR:
                     tape.Decrement();
                     break;
+                case CellType.TAPE_JUMP:
+                    tape.Jump();
+                    break;
+                case CellType.TAPE_INDEX:
+                    tape.SetIndex();
+                    break;
+                case CellType.TAPE_RETRIEVE:
+                    tape.Retrieve();
+                    break;
                 case CellType.BRANCH:
                     if (tape.GetValue() == 0) skip = true;
                     break;
                 case CellType.READ_NUMBER:
-                    var splitted = arguments.Split(' ');
-                    if (splitted?.Length == 0) throw new Exception("No arguments to read");
-                    var res = int.Parse(splitted[0]);
-                    arguments = arguments.Substring(arguments.IndexOf("" + res) + ("" + res).Length);
-                    if (arguments.Length > 0 && arguments[0] == ' ') arguments = arguments.Substring(1);
-                    tape.SetValue(res);
+                    tape.SetValue(reader.GetNumber());
                     break;
                 case CellType.READ_CHAR:
-                    if (arguments.Length == 0) throw new Exception("No arguments to read");
-                    tape.SetValue(arguments[0]);
-                    arguments = arguments.Substring(1);
+                    tape.SetValue(reader.GetChar());
                     break;
                 case CellType.WRITE_NUMBER:
                     Console.Write(tape.GetValue() + " ");
@@ -96,7 +99,6 @@ namespace SuperMarioLang
         {
             switch (type)
             {
-                // TODO
                 case CellType.STOP:
                     mario.Direction = Movement.STOP;
                     break;

@@ -36,6 +36,11 @@ Mario's movements are considered to be the instruction pointer of the program. T
 similar to that of Brainfuck: a circular tape with 256 positions, where every position can store an integer
 (32-bit precision) value.
 
+The program execution ends when Mario goes out of the scenario, either falling below the bottom line, going
+beyond the rightmost or leftmost part of the scenario, or jumping up above the first line of the scenario.
+The execution also stops when Mario gets stuck at any place of the scenario, but in this case it is
+considered an abnormal situation and an error message will be displayed.
+
 ## Instructions
 
 Along Mario's way he can step over several kind of instructions:
@@ -44,6 +49,13 @@ Along Mario's way he can step over several kind of instructions:
 * `(` TAPE_LEFT: Moves the tape pointer one position to the left.
 * `+` TAPE_INCR: Increments the value at the tape position in 1 unit.
 * `-` TAPE_DECR: Decrements the value at the tape position in 1 unit.
+* `%` TAPE_JUMP: Sets the pointer in the position specified by the current value. (Example: we are at
+cell #7 with a value of 2, so the tape pointer moves to cell #2.)
+* `'` TAPE_INDEX: Sets the current value equals to the current position. (Example: we are at cell #4,
+so we set the value at cell #4 to 4.)
+* `&` TAPE_RETRIEVE: Sets the current value equals to the value stored in the position pointed by
+the current value. Example: we are at cell #9 with a value of 3, so we set the value at cell #9 equals
+to the value at cell #3.)
 * `.` WRITE_CHAR: Writes the value at the tape position in the standard output as a character
 by its ASCII code.
 * `:` WRITE_NUMBER: Writes the value at the tape position in the standard output as a number.

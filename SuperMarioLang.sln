@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{7C
 		Examples\Ascii.sml = Examples\Ascii.sml
 		Examples\Compass.sml = Examples\Compass.sml
 		Examples\HelloWorld.sml = Examples\HelloWorld.sml
+		Examples\NewCommands.sml = Examples\NewCommands.sml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{284AE615-5A18-40E3-A888-479E291177D8}"

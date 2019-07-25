@@ -8,19 +8,23 @@ namespace SuperMarioLang
     {
         static void Main(string[] args)
         {
-            if (CheckParameters(args))
+            /**
+             * TODO: Add parameters to help debugging the code. (Flag: -d)
+             * TODO: Add parameters to modify the size of the stack. (Flag: -s 1024)
+             */
+            try
             {
-                var interpreter = new Interpreter(new Loader());
-                try
+                if (CheckParameters(args))
                 {
+                    var interpreter = new Interpreter(new Loader());
                     interpreter.Execute(args[0], args.Skip(1));
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"SuperMarioException: {ex.Message}");
-                }
+                else DisplayUsage();
             }
-            else DisplayUsage();
+            catch (Exception ex)
+            {
+                Console.WriteLine($"SuperMarioException: {ex.Message}");
+            }
 
 #if DEBUG
             Console.ReadKey();
@@ -29,7 +33,12 @@ namespace SuperMarioLang
 
         private static bool CheckParameters(string[] args)
         {
-            return args.Length >= 1 && File.Exists(args[0]);
+            if (args.Length > 0)
+            {
+                if (File.Exists(args[0])) return true;
+                else throw new Exception("File does not exist.");
+            }
+            return false;
         }
 
         private static void DisplayUsage()

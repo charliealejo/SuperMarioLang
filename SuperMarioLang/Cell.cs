@@ -38,6 +38,9 @@ namespace SuperMarioLang
                    Type == CellType.TAPE_INCR ||
                    Type == CellType.TAPE_LEFT ||
                    Type == CellType.TAPE_RIGHT ||
+                   Type == CellType.TAPE_JUMP ||
+                   Type == CellType.TAPE_INDEX ||
+                   Type == CellType.TAPE_RETRIEVE ||
                    Type == CellType.WRITE_CHAR ||
                    Type == CellType.WRITE_NUMBER;
         }
@@ -64,6 +67,9 @@ namespace SuperMarioLang
                 case '(': return CellType.TAPE_LEFT;
                 case '+': return CellType.TAPE_INCR;
                 case '-': return CellType.TAPE_DECR;
+                case '%': return CellType.TAPE_JUMP;
+                case '\'': return CellType.TAPE_INDEX;
+                case '&': return CellType.TAPE_RETRIEVE;
                 case '.': return CellType.WRITE_CHAR;
                 case ':': return CellType.WRITE_NUMBER;
                 case ',': return CellType.READ_CHAR;
@@ -89,6 +95,9 @@ namespace SuperMarioLang
         ELEVATOR_END,
         TAPE_RIGHT,
         TAPE_LEFT,
+        TAPE_JUMP,
+        TAPE_INDEX,
+        TAPE_RETRIEVE,
         TAPE_INCR,
         TAPE_DECR,
         STOP,

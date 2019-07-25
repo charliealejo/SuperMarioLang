@@ -30,5 +30,11 @@ namespace SuperMarioLang
         internal void SetValue(char v) => tape[position] = (byte)v;
 
         internal void SetValue(int v) => tape[position] = v;
+
+        internal void Jump() => position = GetValue();
+
+        internal void SetIndex() => SetValue(position);
+
+        internal void Retrieve() => SetValue(tape[GetValue()]);
     }
 }

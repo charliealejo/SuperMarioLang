@@ -29,4 +29,51 @@ Following is a "Hello World" code written in MarioLang:
                     >        $$ $$
                     =========== ======
 
+The instruction pointer starts in the topmost, leftmost position of the scenario, considered to be
+the origin of coordinates (0,0). Mario starts there and walking to the right, unless there is no floor
+beneath him, in that case he starts falling until he hits the ground and the starts walking to the right.
+Mario's movements are considered to be the instruction pointer of the program. The memory layout is
+similar to that of Brainfuck: a circular tape with 256 positions, where every position can store an integer
+(32-bit precision) value.
+
 ## Instructions
+
+Along Mario's way he can step over several kind of instructions:
+
+* `)` TAPE_RIGHT: Moves the tape pointer one position to the right.
+* `(` TAPE_LEFT: Moves the tape pointer one position to the left.
+* `+` TAPE_INCR: Increments the value at the tape position in 1 unit.
+* `-` TAPE_DECR: Decrements the value at the tape position in 1 unit.
+* `.` WRITE_CHAR: Writes the value at the tape position in the standard output as a character
+by its ASCII code.
+* `:` WRITE_NUMBER: Writes the value at the tape position in the standard output as a number.
+* `,` READ_CHAR: Reads a character from the standard input and stores its ASCII code in the current
+position of the tape.
+* `;` READ_NUMBER: Parses a number from the standard input and stores it in the current position of
+the tape.
+
+## Scenario tiles
+
+* `=` FLOOR: A floor tile. Mario can stand over these and cannot go through them.
+* `|` WALL: A wall tile. Mario can stand over these and cannot go through them.
+* `#` ELEVATOR_START: The start position of an elevator. When Mario stops over one of these tiles
+the elevator will start moving toward its end position. If Mario does not stop over the elevator it 
+will not move and Mario will keep on walking left or right.
+* `"` ELEVATOR_END: The destination of an elevator. Above these tiles it is recommended to place
+a GO_RIGHT or GO_LEFT command to Mario.
+
+A note about elevators: multiple elevators in one column of code are not supported.
+ 
+## Commands to Mario
+
+* `>` GO_RIGHT: Makes Mario move to the right of the scenario.
+* `<` GO_LEFT: Makes Mario move to the left of the scenario.
+* `^` JUMP: Makes Mario jump one position up in the scenario.
+* `!` STOP: Makes Mario stop. Usually placed above elevators, otherwise the code will loop indefinitely.
+* `[` BRANCH: Makes Mario skip the next command if the current value pointed by the tape is 0.
+* `@` TURN_AROUND: Makes Mario change direction.
+
+## Comments
+
+Every character not specified above is considered to be a NO-OP, so they can be used to write
+comments.

@@ -5,13 +5,9 @@ namespace SuperMarioLang
     internal class Interpreter
     {
         private Loader loader;
-
         private Tape tape;
-
         private string arguments;
-
         private bool skip;
-
         private Mario mario;
 
 #if DEBUG
@@ -75,11 +71,15 @@ namespace SuperMarioLang
                     if (tape.GetValue() == 0) skip = true;
                     break;
                 case CellType.READ_NUMBER:
-                    var res = int.Parse(arguments);
+                    var splitted = arguments.Split(' ');
+                    if (splitted?.Length == 0) throw new Exception("No arguments to read");
+                    var res = int.Parse(splitted[0]);
                     arguments = arguments.Substring(arguments.IndexOf("" + res) + ("" + res).Length);
+                    if (arguments.Length > 0 && arguments[0] == ' ') arguments = arguments.Substring(1);
                     tape.SetValue(res);
                     break;
                 case CellType.READ_CHAR:
+                    if (arguments.Length == 0) throw new Exception("No arguments to read");
                     tape.SetValue(arguments[0]);
                     arguments = arguments.Substring(1);
                     break;

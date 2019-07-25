@@ -49,13 +49,13 @@ Along Mario's way he can step over several kind of instructions:
 * `(` TAPE_LEFT: Moves the tape pointer one position to the left.
 * `+` TAPE_INCR: Increments the value at the tape position in 1 unit.
 * `-` TAPE_DECR: Decrements the value at the tape position in 1 unit.
-* `%` TAPE_JUMP: Sets the pointer in the position specified by the current value. (Example: we are at
-cell #7 with a value of 2, so the tape pointer moves to cell #2.)
-* `'` TAPE_INDEX: Sets the current value equals to the current position. (Example: we are at cell #4,
-so we set the value at cell #4 to 4.)
+* `%` TAPE_JUMP: Moves the tape pointer to the position specified by the current value. __(Example: we
+are at cell #7 with a value of 2, so the tape pointer moves to cell #2.)__
+* `'` TAPE_INDEX: Sets the current value equals to the current tape position. __(Example: we are at
+cell #4, so we set the value at cell #4 to 4.)__
 * `&` TAPE_RETRIEVE: Sets the current value equals to the value stored in the position pointed by
-the current value. Example: we are at cell #9 with a value of 3, so we set the value at cell #9 equals
-to the value at cell #3.)
+the current value. __(Example: we are at cell #9 with a value of 3, so we set the value at cell #9
+equals to the value at cell #3.)__
 * `.` WRITE_CHAR: Writes the value at the tape position in the standard output as a character
 by its ASCII code.
 * `:` WRITE_NUMBER: Writes the value at the tape position in the standard output as a number.

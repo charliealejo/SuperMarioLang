@@ -7,7 +7,7 @@ namespace SuperMarioLang
     {
         private string arguments;
 
-        internal ArgsReader(IEnumerable<string> args)
+        internal void SetArguments(IEnumerable<string> args)
         {
             arguments = string.Join(' ', args);
         }

@@ -21,6 +21,11 @@ namespace SuperMarioLang
             Type = t;
         }
 
+        public override string ToString()
+        {
+            return $"Cell at ({X},{Y}), type {Type}";
+        }
+
         internal bool IsFloor()
         {
             return Type == CellType.FLOOR ||

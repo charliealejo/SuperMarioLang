@@ -6,17 +6,18 @@ namespace SuperMarioLang
 {
     class Program
     {
+        static int size = 256;
+        static bool debug = false;
+
         static void Main(string[] args)
         {
-            /**
-             * TODO: Add parameters to help debugging the code. (Flag: -d)
-             * TODO: Add parameters to modify the size of the stack. (Flag: -s 1024)
-             */
             try
             {
+                SetFlags(ref args);
                 if (CheckParameters(args))
                 {
-                    var interpreter = new Interpreter(new Loader());
+                    var interpreter = new Interpreter(
+                        new Loader(), new ArgsReader(), new Tape(size), new Mario(), debug);
                     interpreter.Execute(args[0], args.Skip(1));
                 }
                 else DisplayUsage();
@@ -29,6 +30,24 @@ namespace SuperMarioLang
 #if DEBUG
             Console.ReadKey();
 #endif
+        }
+
+        private static void SetFlags(ref string[] args)
+        {
+            while (args.First().StartsWith('-'))
+            {
+                var arg = args.First();
+                args = args.Skip(1).ToArray();
+                switch (arg[1])
+                {
+                    case 'd': debug = true; break;
+                    case 's':
+                        var s = args.First();
+                        args = args.Skip(1).ToArray();
+                        size = int.Parse(s);
+                        break;
+                }
+            }
         }
 
         private static bool CheckParameters(string[] args)
@@ -47,9 +66,11 @@ namespace SuperMarioLang
             Console.WriteLine();
             Console.WriteLine("Usage:");
             Console.WriteLine();
-            Console.WriteLine("    SuperMarioLang <FileToOpen> [<args>]");
+            Console.WriteLine("    SuperMarioLang [-d] [-s N] <FileToOpen> [<args>]");
             Console.WriteLine();
             Console.WriteLine("Parameters:");
+            Console.WriteLine("    -d            Debug mode, writes information about what Mario did");
+            Console.WriteLine("    -s N          Sets the tape size to N bytes");
             Console.WriteLine("    <FileToOpen>  The path to the file with the code to execute");
             Console.WriteLine("    <args>        The optional arguments to pass to the code");
         }

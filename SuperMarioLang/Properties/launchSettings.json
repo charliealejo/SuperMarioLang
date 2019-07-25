@@ -2,7 +2,7 @@
   "profiles": {
     "SuperMarioLang": {
       "commandName": "Project",
-      "commandLineArgs": "C:\\Users\\sesa507683\\Source\\repos\\SuperMarioLang\\Examples\\NewCommands.sml"
+      "commandLineArgs": "C:\\Users\\sesa507683\\Source\\repos\\SuperMarioLang\\Examples\\Arrow.sml 3"
     }
   }
 }

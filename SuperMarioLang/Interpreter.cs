@@ -11,31 +11,35 @@ namespace SuperMarioLang
         private bool skip;
         private Mario mario;
 
-#if DEBUG
-        private readonly List<Cell> route = new List<Cell>();
-#endif
+        private readonly bool debug;
+        private readonly List<Cell> route;
 
-        public Interpreter(Loader loader)
+        public Interpreter(Loader loader, ArgsReader reader, Tape tape, Mario mario, bool debug = false)
         {
             this.loader = loader;
-            tape = new Tape(256);
-            skip = false;
+            this.reader = reader;
+            this.tape = tape;
+            this.mario = mario;
+            this.debug = debug;
+
+            if (debug) route = new List<Cell>();
         }
 
         internal void Execute(string path, IEnumerable<string> args)
         {
+            tape.Start();
+            mario.Start();
+            skip = false;
+            reader.SetArguments(args);
+
             var scenario = loader.Load(path);
             if (scenario == null) return;
-
-            reader = new ArgsReader(args);
-            mario = new Mario();
             var currentCell = scenario.InitialPosition;
 
             while (currentCell.Type != CellType.END)
             {
-#if DEBUG
-                route.Add(currentCell);
-#endif
+                if (debug) route.Add(currentCell);
+
                 if (currentCell.IsInstruction())
                 {
                     if (skip) skip = false;
@@ -49,6 +53,12 @@ namespace SuperMarioLang
                 currentCell = scenario.NextPosition(mario);
                 mario.X = currentCell.X;
                 mario.Y = currentCell.Y;
+            }
+
+            if (debug)
+            {
+                Console.WriteLine();
+                Console.WriteLine(string.Join('\n', route));
             }
         }
 

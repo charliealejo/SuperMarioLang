@@ -1,4 +1,6 @@
-﻿namespace SuperMarioLang
+﻿using System;
+
+namespace SuperMarioLang
 {
     internal class Mario
     {
@@ -8,7 +10,7 @@
 
         internal Movement Direction { get; set; }
 
-        internal Mario()
+        internal void Start()
         {
             X = 0;
             Y = 0;

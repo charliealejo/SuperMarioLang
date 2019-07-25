@@ -13,6 +13,10 @@ namespace SuperMarioLang
         internal Tape(int capacity)
         {
             this.capacity = capacity;
+        }
+
+        internal void Start()
+        {
             tape = new int[capacity];
             position = 0;
         }

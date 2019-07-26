@@ -1,0 +1,29 @@
+﻿namespace SuperMarioLang
+{
+    public enum CellType
+    {
+        FLOOR,
+        WALL,
+        ELEVATOR_START,
+        ELEVATOR_END,
+        TAPE_RIGHT,
+        TAPE_LEFT,
+        TAPE_JUMP,
+        TAPE_INDEX,
+        TAPE_RETRIEVE,
+        TAPE_INCR,
+        TAPE_DECR,
+        STOP,
+        JUMP,
+        GO_LEFT,
+        GO_RIGHT,
+        TURN_AROUND,
+        BRANCH,
+        READ_NUMBER,
+        READ_CHAR,
+        WRITE_NUMBER,
+        WRITE_CHAR,
+        USELESS,
+        END
+    }
+}

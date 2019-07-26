@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace SuperMarioLang
 {
@@ -9,12 +8,11 @@ namespace SuperMarioLang
         {
         }
 
-        internal Scenario Load(string path)
+        internal string[] Load(string path)
         {
             if (new FileInfo(path).Length == 0) return null;
 
-            string[] scenario = File.ReadAllLines(path);
-            return new Scenario(scenario);
+            return File.ReadAllLines(path);
         }
     }
 }

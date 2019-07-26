@@ -32,8 +32,10 @@ namespace SuperMarioLang
             skip = false;
             reader.SetArguments(args);
 
-            var scenario = loader.Load(path);
-            if (scenario == null) return;
+            var scene = loader.Load(path);
+            if (scene == null) return;
+
+            var scenario = new Scenario(scene, new CellFactory());
             var currentCell = scenario.InitialPosition;
 
             while (currentCell.Type != CellType.END)

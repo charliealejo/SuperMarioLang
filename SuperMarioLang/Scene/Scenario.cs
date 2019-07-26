@@ -3,32 +3,32 @@ using System.Linq;
 
 namespace SuperMarioLang
 {
-    internal class Scenario
+    public class Scenario
     {
         private readonly Cell[,] scenario;
 
-        internal Scenario(string[] scenario)
+        public Scenario(string[] scenario, ICellFactory factory)
         {
             this.scenario = new Cell[scenario.Length, scenario.Max(l => l.Length)];
             for (int i = 0; i < scenario.Length; i++)
             {
                 for (int j = 0; j < scenario[i].Length; j++)
                 {
-                    this.scenario[i, j] = new Cell(i, j, scenario[i][j]);
+                    this.scenario[i, j] = factory.Create(i, j, scenario[i][j]);
                 }
                 for (int j = scenario[i].Length; j < this.scenario.GetLength(1); j++)
                 {
-                    this.scenario[i, j] = new Cell(i, j, ' ');
+                    this.scenario[i, j] = factory.Create(i, j, ' ');
                 }
             }
         }
 
-        internal Cell InitialPosition
+        public Cell InitialPosition
         {
             get { return scenario[0, 0]; }
         }
 
-        internal Cell NextPosition(Mario mario)
+        public Cell NextPosition(Mario mario)
         {
             int x = mario.X;
             int y = mario.Y;
@@ -47,7 +47,7 @@ namespace SuperMarioLang
                     scenario[x + 1, y].Type == CellType.ELEVATOR_START)
                 {
                     int elevatorEnd = -1;
-                    for (int i = 0; i < scenario.GetLength(1); i++)
+                    for (int i = 0; i < scenario.GetLength(0); i++)
                         if (scenario[i, y].Type == CellType.ELEVATOR_END)
                         {
                             elevatorEnd = i;

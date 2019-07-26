@@ -2,15 +2,15 @@
 
 namespace SuperMarioLang
 {
-    internal class Mario
+    public class Mario
     {
-        internal int X { get; set; }
+        public int X { get; set; }
 
-        internal int Y { get; set; }
+        public int Y { get; set; }
 
-        internal Movement Direction { get; set; }
+        public Movement Direction { get; set; }
 
-        internal void Start()
+        public void Start()
         {
             X = 0;
             Y = 0;
@@ -18,7 +18,7 @@ namespace SuperMarioLang
         }
     }
 
-    internal enum Movement
+    public enum Movement
     {
         LEFT,
         RIGHT,

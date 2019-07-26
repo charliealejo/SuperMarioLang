@@ -34,7 +34,7 @@ the origin of coordinates (0,0). Mario starts there and walking to the right, un
 beneath him, in that case he starts falling until he hits the ground and the starts walking to the right.
 Mario's movements are considered to be the instruction pointer of the program. The memory layout is
 similar to that of Brainfuck: a circular tape with 256 positions, where every position can store an integer
-(32-bit precision) value.
+(32-bit precision) value. Tape starts at position 0.
 
 The program execution ends when Mario goes out of the scenario, either falling below the bottom line, going
 beyond the rightmost or leftmost part of the scenario, or jumping up above the first line of the scenario.
@@ -89,3 +89,25 @@ A note about elevators: multiple elevators in one column of code are not support
 
 Every character not specified above is considered to be a NO-OP, so they can be used to write
 comments.
+
+## Examples
+
+### Hello, world! (Revisited)
+
+                SuperMarioLANG Hello World  <
+             = =============================^<
+               |   Created by Charlie      |=^<
+    +        = ==============================="=
+    ++++++++++
+    ========== =
+              >)+++)+++++++)+++++++++)++++)%-[!))-----.)++
+             =================================#==========
+    -(.+++*-&).(.++++++++*-&.-*+)).(.+++..+++++++*--&)). <
+     =====================================================
+    > --.((-.((.
+    ============= =        |*
+                          $$$
+                         $$$$$
+                         $$ $$
+                 >       $$ $$
+                =========== ======

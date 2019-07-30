@@ -35,6 +35,8 @@
                 case '[': return CellType.BRANCH;
                 case '@': return CellType.TURN_AROUND;
 
+                case '?': return CellType.DEBUG;
+
                 default: return CellType.USELESS;
             }
         }

@@ -104,6 +104,9 @@ namespace SuperMarioLang
                 case CellType.WRITE_CHAR:
                     Console.Write((char)tape.GetValue());
                     break;
+                case CellType.DEBUG:
+                    System.Diagnostics.Debugger.Break();
+                    break;
             }
         }
 

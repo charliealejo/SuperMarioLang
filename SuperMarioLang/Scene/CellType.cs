@@ -24,6 +24,7 @@
         WRITE_NUMBER,
         WRITE_CHAR,
         USELESS,
-        END
+        END,
+        DEBUG
     }
 }

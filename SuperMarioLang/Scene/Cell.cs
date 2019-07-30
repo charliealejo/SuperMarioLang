@@ -45,7 +45,8 @@ namespace SuperMarioLang
                    Type == CellType.TAPE_INDEX ||
                    Type == CellType.TAPE_RETRIEVE ||
                    Type == CellType.WRITE_CHAR ||
-                   Type == CellType.WRITE_NUMBER;
+                   Type == CellType.WRITE_NUMBER ||
+                   Type == CellType.DEBUG;
         }
 
         public bool IsMovement()

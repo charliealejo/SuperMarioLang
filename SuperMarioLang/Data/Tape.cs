@@ -2,43 +2,43 @@
 
 namespace SuperMarioLang
 {
-    internal class Tape
+    public class Tape
     {
-        internal int[] tape;
+        private int[] tape;
 
-        internal int position;
+        private int position;
 
-        internal int capacity;
+        private int capacity;
 
-        internal Tape(int capacity)
+        public Tape(int capacity)
         {
             this.capacity = capacity;
         }
 
-        internal void Start()
+        public void Start()
         {
             tape = new int[capacity];
             position = 0;
         }
 
-        internal void MoveRight() => position = ++position == capacity ? 0 : position;
+        public void MoveRight() => position = ++position == capacity ? 0 : position;
 
-        internal void MoveLeft() => position = --position < 0 ? capacity - 1 : position;
+        public void MoveLeft() => position = --position < 0 ? capacity - 1 : position;
 
-        internal void Increment() => tape[position]++;
+        public void Increment() => tape[position]++;
 
-        internal void Decrement() => tape[position]--;
+        public void Decrement() => tape[position]--;
 
-        internal int GetValue() => tape[position];
+        public int GetValue() => tape[position];
 
-        internal void SetValue(char v) => tape[position] = (byte)v;
+        public void SetValue(char v) => tape[position] = (byte)v;
 
-        internal void SetValue(int v) => tape[position] = v;
+        public void SetValue(int v) => tape[position] = v;
 
-        internal void Jump() => position = GetValue();
+        public void Jump() => position = GetValue();
 
-        internal void SetIndex() => SetValue(position);
+        public void SetIndex() => SetValue(position);
 
-        internal void Retrieve() => SetValue(tape[GetValue()]);
+        public void Retrieve() => SetValue(tape[GetValue()]);
     }
 }

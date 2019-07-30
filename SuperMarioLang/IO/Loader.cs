@@ -1,18 +1,24 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace SuperMarioLang
 {
-    internal class Loader
+    public class Loader
     {
         public Loader()
         {
         }
 
-        internal string[] Load(string path)
+        public string[] Load(string path)
         {
-            if (new FileInfo(path).Length == 0) return null;
-
-            return File.ReadAllLines(path);
+            try
+            {
+                return File.ReadAllLines(path);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }

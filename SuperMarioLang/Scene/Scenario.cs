@@ -53,6 +53,10 @@ namespace SuperMarioLang
                             elevatorEnd = i;
                             break;
                         }
+                    if (elevatorEnd == -1)
+                    {
+                        throw new Exception("Elevator without end");
+                    }
                     if (elevatorEnd < x)
                     {
                         mario.Direction = Movement.ELEVATOR_UP;

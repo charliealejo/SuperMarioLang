@@ -139,5 +139,22 @@ namespace SuperMarioLang.Tests
             Assert.AreEqual(-1, actual.Y);
             Assert.AreEqual(CellType.END, actual.Type);
         }
+
+        [TestMethod]
+        public void ThrowsAnErrorWhenAnElevatorDoesNotHaveACorrespondingEnd()
+        {
+            scenarioUT = new Scenario(new string[] { " ", " ", "#" }, factoryMock.Object);
+
+            try
+            {
+                scenarioUT.NextPosition(
+                    new Mario() { X = 1, Y = 0, Direction = Movement.STOP });
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                StringAssert.Contains(ex.Message, "Elevator");
+            }
+        }
     }
 }

@@ -3,39 +3,34 @@ using System.Collections.Generic;
 
 namespace SuperMarioLang
 {
-    internal class Interpreter
+    public class Interpreter
     {
-        private Loader loader;
-        private ArgsReader reader;
-        private Tape tape;
-        private bool skip;
-        private Mario mario;
+        private readonly IArgsReader reader;
+        private readonly ITape tape;
+        private readonly IMario mario;
 
         private readonly bool debug;
         private readonly List<Cell> route;
 
-        public Interpreter(Loader loader, ArgsReader reader, Tape tape, Mario mario, bool debug = false)
+        private bool skip;
+
+        public Interpreter(IArgsReader reader, ITape tape, IMario mario, bool debug = false)
         {
-            this.loader = loader;
             this.reader = reader;
             this.tape = tape;
             this.mario = mario;
-            this.debug = debug;
 
+            this.debug = debug;
             if (debug) route = new List<Cell>();
         }
 
-        internal void Execute(string path, IEnumerable<string> args)
+        public void Execute(IScenario scenario, IEnumerable<string> args)
         {
+            reader.SetArguments(args);
             tape.Start();
             mario.Start();
             skip = false;
-            reader.SetArguments(args);
 
-            var scene = loader.Load(path);
-            if (scene == null) return;
-
-            var scenario = new Scenario(scene, new CellFactory());
             var currentCell = scenario.InitialPosition;
 
             while (currentCell.Type != CellType.END)

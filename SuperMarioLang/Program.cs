@@ -16,9 +16,14 @@ namespace SuperMarioLang
                 SetFlags(ref args);
                 if (CheckParameters(args))
                 {
-                    var interpreter = new Interpreter(
-                        new Loader(), new ArgsReader(), new Tape(size), new Mario(), debug);
-                    interpreter.Execute(args[0], args.Skip(1));
+                    var interpreter = new Interpreter(new ArgsReader(),
+                        new Tape(size), new Mario(), debug);
+                    var scene = Loader.Load(args[0]);
+                    if (scene != null)
+                    {
+                        interpreter.Execute(new Scenario(
+                            scene, new CellFactory()), args.Skip(1));
+                    }
                 }
                 else DisplayUsage();
             }

@@ -3,13 +3,9 @@ using System.IO;
 
 namespace SuperMarioLang
 {
-    public class Loader
+    public static class Loader
     {
-        public Loader()
-        {
-        }
-
-        public string[] Load(string path)
+        public static string[] Load(string path)
         {
             try
             {

@@ -2,7 +2,7 @@
 
 namespace SuperMarioLang
 {
-    public class Mario
+    public class Mario : IMario
     {
         public int X { get; set; }
 

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace SuperMarioLang
 {
-    public class Scenario
+    public class Scenario : IScenario
     {
         private readonly Cell[,] scenario;
 
@@ -28,7 +28,7 @@ namespace SuperMarioLang
             get { return scenario[0, 0]; }
         }
 
-        public Cell NextPosition(Mario mario)
+        public Cell NextPosition(IMario mario)
         {
             int x = mario.X;
             int y = mario.Y;

@@ -2,13 +2,13 @@
 
 namespace SuperMarioLang
 {
-    public class Tape
+    public class Tape : ITape
     {
         private int[] tape;
 
         private int position;
 
-        private int capacity;
+        private readonly int capacity;
 
         public Tape(int capacity)
         {

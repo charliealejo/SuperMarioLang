@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SuperMarioLang
 {
-    public class ArgsReader
+    public class ArgsReader : IArgsReader
     {
         private string arguments;
 

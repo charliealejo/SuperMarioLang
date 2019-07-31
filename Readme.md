@@ -112,6 +112,24 @@ comments.
                  >       $$ $$
                 =========== ======
 
+### Character frequency
+
+The following program reads a sequence of characters from the standard input and then
+prints a list with the number of occurrences for each character in the input stream.
+
+         >++++)
+        >^====+  (+++<
+    >,[!^= (< +======"          *-<
+    "==#=  =" +      )      ======"
+       >%+>[!%+      )         >&[!
+       "====# +            )   "==#=====================
+    !        <>+++(-[!))+(%> [!!
+    #================#====="==##
+                              >          (((++*)+*)&+)[!
+                              "========================#
+                           !)*-&)*-&)*-&)*-&.(((:)).(.(<
+                           #==========================="
+
 ## Command-line arguments
 
 The code compiles to a DLL file that can be run with the `dotnet` command from .NET, along

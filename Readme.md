@@ -60,9 +60,9 @@ equals to the value at cell #3.)_
 by its ASCII code.
 * `:` __WRITE_NUMBER__: Writes the value at the tape position in the standard output as a number.
 * `,` __READ_CHAR__: Reads a character from the standard input and stores its ASCII code in the current
-position of the tape.
+position of the tape. If there are no arguments to read, a 0 (zero) value is read instead.
 * `;` __READ_NUMBER__: Parses a number from the standard input and stores it in the current position of
-the tape.
+the tape. If there are no arguments to read, a 0 (zero) value is read instead.
 
 ## Scenario tiles
 
@@ -111,3 +111,24 @@ comments.
                          $$ $$
                  >       $$ $$
                 =========== ======
+
+## Command-line arguments
+
+The code compiles to a DLL file that can be run with the `dotnet` command from .NET, along
+with some command-line parameters. You can get the following help message if you run
+the application with no arguments:
+
+    SuperMarioLang interpreter.
+    
+    Usage:
+    
+        SuperMarioLang [-d] [-s N] <FileToOpen> [<args>]
+    
+    Parameters:
+        -d            Debug mode, writes information about what Mario did
+        -s N          Sets the tape size to N bytes
+        <FileToOpen>  The path to the file with the code to execute
+        <args>        The optional arguments to pass to the code
+
+The only mandatory argument is the file to read as source code. Every other argument
+is optional, including the arguments for the code itself.
